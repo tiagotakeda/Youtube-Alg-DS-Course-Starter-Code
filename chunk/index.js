@@ -7,21 +7,35 @@
 // chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
 
 function chunk(array, size) {
-	let response = []
-	for (let i = 0; i < array.length; i++) {
-		let obj = []
-		for (let j = 0; j < size; j++) {
-			if (array[j] !== undefined) {
-				obj.push(array[j])
-			}
-		}
-		for (let k = 0; k < size; k++) {
-			array.shift()
-		}
-		response.push(obj)
-	}
+  let response = []
 
-	return response
+  // Solution 1
+  for (let i = 0; i < array.length; i++) {
+    let obj = []
+    for (let j = 0; j < size; j++) {
+      if (array[j] !== undefined) {
+        obj.push(array[j])
+      }
+    }
+    for (let k = 0; k < size; k++) {
+      array.shift()
+    }
+    response.push(obj)
+  }
+
+  // Solution 2
+  // for (let i = 0; i < array.length; i++) {
+  //   const item = array[i]
+  //   const last = response[response.length - 1]
+
+  //   if (!last || last.length === size) {
+  //     response.push([item])
+  //   } else {
+  //     last.push(item)
+  //   }
+  // }
+
+  return response
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -51,21 +65,21 @@ mocha.setup('bdd')
 const { assert } = chai
 
 describe('Array Chunking', () => {
-	it('chunk() works', () => {
-		let arr = ['a', 'b', 'c', 'd']
-		let chunked = chunk(arr, 2)
-		assert.deepEqual(chunked, [
-			['a', 'b'],
-			['c', 'd']
-		])
+  it('chunk() works', () => {
+    let arr = ['a', 'b', 'c', 'd']
+    let chunked = chunk(arr, 2)
+    assert.deepEqual(chunked, [
+      ['a', 'b'],
+      ['c', 'd']
+    ])
 
-		arr = [0, 1, 2, 3, 4, 5]
-		chunked = chunk(arr, 4)
-		assert.deepEqual(chunked, [
-			[0, 1, 2, 3],
-			[4, 5]
-		])
-	})
+    arr = [0, 1, 2, 3, 4, 5]
+    chunked = chunk(arr, 4)
+    assert.deepEqual(chunked, [
+      [0, 1, 2, 3],
+      [4, 5]
+    ])
+  })
 })
 
 mocha.run()

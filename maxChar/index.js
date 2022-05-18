@@ -4,18 +4,19 @@
 // maxChar("1337") === "3"
 
 function maxChar(str) {
-	let count = {}
-	let maxCh = ''
-	let maxCo = 0
-	for (let i = 0; i < str.length; i++) {
-		count[str[i]] = count[str[i]] + 1 || 1
-		if (count[str[i]] > maxCo) {
-			maxCh = str[i]
-			maxCo = count[str[i]]
-		}
-	}
-	console.log(`string: ${str} \t=> '${maxCh}' repete ${maxCo} vezes`)
-	return maxCh
+  let count = {}
+  let maxCh = ''
+  let maxCo = 0
+  for (let i = 0; i < str.length; i++) {
+    count[str[i]] = count[str[i]] + 1 || 1
+    if (count[str[i]] > maxCo) {
+      maxCh = str[i]
+      maxCo = count[str[i]]
+    }
+  }
+  // console.log(`string: ${str} \t=> '${maxCh}' repete ${maxCo} vezes`)
+  console.log(count)
+  return maxCh
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
@@ -45,12 +46,12 @@ mocha.setup('bdd')
 const { assert } = chai
 
 describe('Max Character', () => {
-	it('maxChar() finds the most frequently used character', () => {
-		assert.equal(maxChar('a'), 'a')
-		assert.equal(maxChar('test'), 't')
-		assert.equal(maxChar('I loveeeeee noodles'), 'e')
-		assert.equal(maxChar('1337'), '3')
-	})
+  it('maxChar() finds the most frequently used character', () => {
+    assert.equal(maxChar('a'), 'a')
+    assert.equal(maxChar('test'), 't')
+    assert.equal(maxChar('I loveeeeee noodles'), 'e')
+    assert.equal(maxChar('1337'), '3')
+  })
 })
 
 mocha.run()
